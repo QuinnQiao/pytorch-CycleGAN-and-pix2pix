@@ -7,10 +7,13 @@ import numpy as np
 import torch.utils.data as data
 from PIL import Image
 import torchvision.transforms as transforms
-from abc import ABC, abstractmethod
+# from abc import ABC, abstractmethod
+from abc import ABCMeta, abstractmethod
 
 
-class BaseDataset(data.Dataset, ABC):
+# class BaseDataset(data.Dataset, ABC):
+class BaseDataset(data.Dataset):
+    __metaclass__ = ABCMeta
     """This class is an abstract base class (ABC) for datasets.
 
     To create a subclass, you need to implement the following four functions:
