@@ -4,7 +4,7 @@ import tensorboardX
 
 assert len(sys.argv) == 3
 lossfile = open(sys.argv[1])
-# writer = tensorboardX.SummaryWriter(sys.argv[2])
+writer = tensorboardX.SummaryWriter(sys.argv[2])
 
 num_per_epoch = 1231
 w_cyc = 10.
@@ -29,7 +29,19 @@ for line in lossfile:
 	cur_iters = num_per_epoch * (epoch-1)
 	cur_iters += iters
 
-	print(epoch, cur_iters)
+	writer.add_scalar('loss_dis_a', loss_dis_a, cur_iters)
+	writer.add_scalar('loss_dis_b', loss_dis_b, cur_iters)
+	tot_d = loss_dis_a + loss_dis_b
+	writer.add_scalar('loss_dis_tot', tot_d, cur_iters)
+
+	writer.add_scalar('loss_gen_adv_a', loss_gen_adv_a, cur_iters)
+	writer.add_scalar('loss_gen_adv_b', loss_gen_adv_b, cur_iters)
+	writer.add_scalar('loss_gen_cyc_a', loss_gen_cyc_a / w_cyc, cur_iters)
+	writer.add_scalar('loss_gen_cyc_b', loss_gen_cyc_b / w_cyc, cur_iters)
+	writer.add_scalar('loss_gen_idt_a', loss_gen_idt_a / w_idt, cur_iters)
+	writer.add_scalar('loss_gen_idt_b', loss_gen_idt_b / w_idt, cur_iters)
+	tot_g = loss_gen_adv_a + loss_gen_adv_b + loss_gen_cyc_a + loss_gen_cyc_b + loss_gen_idt_a + loss_gen_idt_b
+	writer.add_scalar('loss_gen_tot', tot_g, cur_iters)
 
 
 '''
