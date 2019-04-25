@@ -44,6 +44,9 @@ if __name__ == '__main__':
 
     a2b = images_in_A + images_out_A
     b2a = images_in_B + images_out_B
+
+    if not os.path.exists(opt.results_dir):
+    	os.makedirs(opt.results_dir)
     
     save_images(opt.results_dir, 'A2B.jpg', a2b, num_input)
     save_images(opt.results_dir, 'B2A.jpg', b2a, num_input)
