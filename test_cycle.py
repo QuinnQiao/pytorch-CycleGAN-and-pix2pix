@@ -37,8 +37,8 @@ if __name__ == '__main__':
         model.set_input(data)  # unpack data from data loader
         model.test()           # run inference
         visuals = model.get_current_visuals()  # get image results
-        images_out_A.append((visuals['fakeB'].cpu().data+1)/2)
-        images_out_B.append((visuals['fakeA'].cpu().data+1)/2)
+        images_out_A.append((visuals['fake_B'].cpu().data+1)/2)
+        images_out_B.append((visuals['fake_A'].cpu().data+1)/2)
 
     num_input = len(images_in_A)
 
