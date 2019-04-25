@@ -43,10 +43,10 @@ if __name__ == '__main__':
 
     a2b_dir = os.path.join(opt.results_dir, 'A2B')
     if not os.path.exists(a2b_dir):
-        os.makedir(a2b_dir)
+        os.makedirs(a2b_dir)
     b2a_dir = os.path.join(opt.results_dir, 'B2A')
     if not os.path.exists(b2a_dir):
-        os.makedir(b2a_dir)
+        os.makedirs(b2a_dir)
     
     save_images(a2b_dir, 'result.jpg', a2b, num_input)
     save_images(b2a_dir, 'result.jpg', b2a, num_input)
