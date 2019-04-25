@@ -18,12 +18,13 @@ if __name__ == '__main__':
     opt.serial_batches = True  # disable data shuffling; comment this line if results on randomly chosen images are needed.
     opt.no_flip = True    # no flip; comment this line if results on flipped images are needed.
     opt.display_id = -1   # no visdom display; the test code saves the results to a HTML file.
+    opt.phase = 'valid'   # for create_dataset, use dataroot/valid*
     dataset = create_dataset(opt)  # create a dataset given opt.dataset_mode and other options
     model = create_model(opt)      # create a model given opt.model and other options
     model.setup(opt)               # regular setup: load and print networks; create schedulers
     
-    if opt.eval:
-        model.eval()
+    # use neither of dropout or BN
+    model.eval()
     
     images_in_A, images_in_B = [], []
     images_out_A, images_out_B = [], []
@@ -40,13 +41,6 @@ if __name__ == '__main__':
 
     a2b = images_in_A + images_out_A
     b2a = images_in_B + images_out_B
-
-    a2b_dir = os.path.join(opt.results_dir, 'A2B')
-    if not os.path.exists(a2b_dir):
-        os.makedirs(a2b_dir)
-    b2a_dir = os.path.join(opt.results_dir, 'B2A')
-    if not os.path.exists(b2a_dir):
-        os.makedirs(b2a_dir)
     
-    save_images(a2b_dir, 'result.jpg', a2b, num_input)
-    save_images(b2a_dir, 'result.jpg', b2a, num_input)
+    save_images(opt.result_dir, 'A2B.jpg', a2b, num_input)
+    save_images(opt.result_dir, 'B2A.jpg', b2a, num_input)
