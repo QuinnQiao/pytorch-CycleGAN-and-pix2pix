@@ -45,5 +45,5 @@ if __name__ == '__main__':
     a2b = images_in_A + images_out_A
     b2a = images_in_B + images_out_B
     
-    save_images(opt.result_dir, 'A2B.jpg', a2b, num_input)
-    save_images(opt.result_dir, 'B2A.jpg', b2a, num_input)
+    save_images(opt.results_dir, 'A2B.jpg', a2b, num_input)
+    save_images(opt.results_dir, 'B2A.jpg', b2a, num_input)
