@@ -48,5 +48,8 @@ if __name__ == '__main__':
     if not os.path.exists(opt.results_dir):
     	os.makedirs(opt.results_dir)
     
-    save_images(opt.results_dir, 'A2B.jpg', a2b, num_input)
-    save_images(opt.results_dir, 'B2A.jpg', b2a, num_input)
+    # save_images(opt.results_dir, 'A2B.jpg', a2b, num_input)
+    # save_images(opt.results_dir, 'B2A.jpg', b2a, num_input)
+    for i in range(len(a2b)):
+        vutils.save_image(a2b[i], os.path.join(save_dir, "a2b_{}.jpg".format(i)), nrow=1)
+        vutils.save_image(b2a[i], os.path.join(save_dir, "b2a_{}.jpg".format(i)), nrow=1)
